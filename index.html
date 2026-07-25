@@ -3,29 +3,372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moubani Maitra — Political Anthropology & Political Economy</title>
+<title>Moubani Maitra — Political Anthropology &amp; Political Economy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<style>
+  :root{
+    --paper: #FAFAF6;
+    --paper-deep: #F1F0EA;
+    --paper-line: rgba(122,46,34,0.18);
+    --ink: #7A2E22;
+    --ink-soft: #8F4A3A;
+    --stamp: #9C2B34;
+    --stamp-soft: rgba(156,43,52,0.12);
+    --ledger: #241512;
+    --ledger-soft: #341F1A;
+    --verdigris: #52796F;
+    --brass: #A9832E;
+    --radius: 3px;
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.07;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    z-index:999;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px;
+    height:1px;
+    background:var(--stamp);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    color:var(--ink);
+    margin:0;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+
+  /* ---------- HEADER ---------- */
+  .site-header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(250,250,246,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .header-row{
+    max-width:var(--maxw); margin:0 auto; padding:0 32px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600; font-size:0.85rem;
+    letter-spacing:0.04em;
+    border:1px solid var(--ink);
+    padding:5px 9px;
+    border-radius:var(--radius);
+    text-decoration:none;
+  }
+  .tabs{display:flex; flex-wrap:wrap; gap:2px; list-style:none; margin:0; padding:0;}
+  .tabs a{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:10px 12px;
+    border:1px solid transparent;
+    border-bottom:none;
+    border-radius:var(--radius) var(--radius) 0 0;
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .tabs a:hover{ color:var(--stamp); background:var(--paper-deep); border-color:var(--paper-line); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--ink); border-radius:var(--radius); padding:8px 10px; font-family:'IBM Plex Mono',monospace; }
+
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:var(--radius);
+    display:inline-block;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{ background:var(--stamp); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(156,43,52,0.28); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:88px 0; }
+  .section-alt{ background:var(--paper-deep); }
+  .section-head{ margin-bottom:44px; max-width:60ch; }
+  .section-head h2{ font-size:2rem; margin-top:10px; }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- ABOUT ---------- */
+  .about-photo-grid{ display:grid; grid-template-columns:260px 1fr; gap:48px; align-items:start; }
+  .about-photo{
+    width:100%;
+    aspect-ratio:3/4;
+    object-fit:cover;
+    border-radius:2px;
+    filter:grayscale(100%);
+    box-shadow:0 20px 40px rgba(122,46,34,0.18);
+  }
+  .about-name{
+    margin-top:14px;
+    font-family:'Fraunces', Georgia, serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.1rem;
+    color:var(--ink);
+  }
+  .about-grid{ display:grid; grid-template-columns:1.4fr 1fr; gap:56px; align-items:start; }
+  .about-grid p{ margin:0 0 16px; color:var(--ink-soft); }
+  .facts{ list-style:none; margin:0; padding:0; border-top:1px solid var(--paper-line); }
+  .facts li{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:12px 0; border-bottom:1px solid var(--paper-line);
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+  }
+  .facts li span:first-child{ color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.04em; }
+  .facts li span:last-child{ text-align:right; color:var(--ink); }
+
+  .file-no{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:var(--brass);
+    letter-spacing:0.05em;
+  }
+  .tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.03em;
+    padding:4px 8px;
+    border:1px solid var(--paper-line);
+    border-radius:12px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- PHD PROJECT ---------- */
+  .phd-project{
+    background:var(--paper);
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius);
+    padding:40px;
+    max-width:74ch;
+  }
+  .phd-project h3{ font-size:1.6rem; line-height:1.32; margin:12px 0 20px; font-style:italic; font-weight:500; }
+  .phd-project p{ color:var(--ink-soft); margin:0 0 18px; }
+  .phd-project .tags{ margin-top:6px; }
+
+  /* ---------- FIELDWORK ---------- */
+  .fieldwork{ background:var(--ledger); color:var(--paper); }
+  .fieldwork .eyebrow{ color:var(--brass); }
+  .fieldwork .eyebrow::before{ background:var(--brass); }
+  .fieldwork h2{ color:var(--paper); }
+  /* ---------- FIELDWORK — CINEMATIC PHOTO ESSAY ---------- */
+  .photo-essay{ display:flex; flex-direction:column; gap:10vh; }
+  .photo-essay-item{
+    width:100%;
+    max-width:920px;
+    position:relative;
+  }
+  .photo-essay-item:nth-child(even){ align-self:flex-end; }
+  .photo-essay-item:nth-child(odd){ align-self:flex-start; }
+  .photo-frame{
+    position:relative;
+    overflow:hidden;
+    border-radius:2px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.45);
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:78vh;
+    object-fit:contain;
+    background:#1a100d;
+  }
+  .photo-frame::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    box-shadow:inset 0 0 90px rgba(0,0,0,0.5);
+    pointer-events:none;
+  }
+  .frame-index{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.1em;
+    color:rgba(231,225,210,0.45);
+    margin-top:10px;
+  }
+
+  /* ---------- PUBLICATIONS / WORK IN PROGRESS ---------- */
+  .ledger{ list-style:none; margin:0; padding:0; border-top:1px solid var(--paper-line); }
+  .pub{
+    display:grid; grid-template-columns:44px 1fr auto; gap:18px; align-items:baseline;
+    padding:20px 0; border-bottom:1px solid var(--paper-line);
+    position:relative;
+  }
+  .pub-num{ font-family:'IBM Plex Mono', monospace; color:var(--brass); font-size:0.85rem; }
+  .pub-title{ font-style:italic; font-size:1.05rem; }
+  .pub-meta{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-soft); margin-top:4px; font-style:normal; }
+  .pub-year{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--ink-soft); }
+  .stamp-badge{
+    position:absolute; right:0; top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.6rem; letter-spacing:0.08em;
+    color:var(--stamp); border:1px solid var(--stamp);
+    padding:3px 7px; border-radius:2px;
+    transform:rotate(-8deg) scale(0.9);
+    opacity:0; transition:opacity .2s ease, transform .2s ease;
+    background:var(--stamp-soft);
+  }
+  .pub:hover .stamp-badge{ opacity:1; transform:rotate(-8deg) scale(1); }
+
+  /* ---------- TEACHING ---------- */
+  .course-card{
+    background:var(--paper);
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius);
+    padding:36px;
+    max-width:74ch;
+  }
+  .course-card h3{ font-size:1.4rem; line-height:1.32; margin:0 0 8px; font-style:italic; font-weight:500; }
+  .course-card .course-meta{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em; color:var(--ink-soft); margin:0 0 20px; }
+  .course-card p:not(.course-meta){ color:var(--ink-soft); margin:0 0 16px; }
+  .course-card .tags{ margin-top:6px; }
+
+  /* ---------- SUB-BLOCKS (Activities, Coordination) ---------- */
+  .subblock{ margin-bottom:30px; }
+  .subblock:last-child{ margin-bottom:0; }
+  .subhead{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--verdigris);
+    margin-bottom:10px;
+  }
+  .cv-list{ margin:0; padding:0; }
+  .cv-entry{
+    margin:0 0 11px;
+    font-size:0.92rem;
+    line-height:1.55;
+    color:var(--ink-soft);
+    max-width:66ch;
+  }
+  .cv-entry:last-child{ margin-bottom:0; }
+  .cv-entry em{ font-style:italic; color:var(--ink); }
+  .cv-year{ font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--ink); margin-right:2px; }
+  .cv-date{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--brass); }
+
+  /* ---------- CV ---------- */
+  .cv-box{
+    display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    background:var(--paper); border:1px solid var(--paper-line); border-radius:var(--radius);
+    padding:32px;
+  }
+  .cv-box p{ margin:6px 0 0; color:var(--ink-soft); max-width:50ch; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-block{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.88rem;
+    line-height:2;
+    color:var(--ink-soft);
+    border:1px solid var(--paper-line);
+    border-radius:var(--radius);
+    padding:28px 32px;
+    max-width:52ch;
+  }
+  .contact-block a{ color:var(--stamp); text-decoration:none; border-bottom:1px solid transparent; }
+  .contact-block a:hover{ border-color:var(--stamp); }
+  .contact-links{ margin-top:24px; display:flex; gap:10px; flex-wrap:wrap; }
+
+  footer{
+    padding:32px 0 48px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    border-top:1px solid var(--paper-line);
+  }
+
+  @media (max-width: 860px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-photo-grid{ grid-template-columns:1fr; }
+    .about-photo{ max-width:220px; }
+    .photo-essay-item{ max-width:100%; align-self:center !important; }
+    .tabs{ display:none; }
+    .nav-toggle{ display:inline-flex; }
+    .tabs.open{
+      display:flex; flex-direction:column; position:absolute; top:64px; right:32px;
+      background:var(--paper); border:1px solid var(--paper-line); border-radius:var(--radius);
+      padding:6px; max-height:80vh; overflow-y:auto;
+    }
+    .pub{ grid-template-columns:32px 1fr; }
+    .pub-year{ grid-column:2; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+</style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-row">
-    <a class="mark" href="index.html">Maitra</a>
+    <div></div>
     <nav>
       <ul class="tabs" id="tabs">
-        <li><a href="index.html" class="active">About</a></li>
-        <li><a href="affiliations.html">Affiliations</a></li>
-        <li><a href="phd-project.html">PhD Project</a></li>
-        <li><a href="fieldwork.html">Fieldwork</a></li>
-        <li><a href="work-in-progress.html">Work in Progress</a></li>
-        <li><a href="activities.html">Activities</a></li>
-        <li><a href="teaching.html">Teaching</a></li>
-        <li><a href="grants.html">Grants</a></li>
-        <li><a href="scholarships.html">Scholarships</a></li>
-        <li><a href="cv.html">CV</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#affiliations">Affiliations</a></li>
+        <li><a href="#research">PhD Project</a></li>
+        <li><a href="#fieldwork">Fieldwork</a></li>
+        <li><a href="#publications">Work in Progress</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#grants">Grants</a></li>
+        <li><a href="#scholarships">Scholarships</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">≡</button>
@@ -34,13 +377,215 @@
 
 <main class="wrap">
 
-  <section id="about" class="page-section reveal">
+  <!-- ABOUT -->
+  <section id="about" class="reveal" style="padding-top:150px;">
     <div class="section-head">
       <h2>About</h2>
     </div>
-    <div style="max-width:60ch;">
-      <p style="color:var(--ink-soft); margin:0 0 16px;">My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship has evolved in contemporary India — tracing this evolution from the Congress-led United Progressive Alliance to the BJP-led National Democratic Alliance, and asking how authoritarianism and neoliberalism manifest at the grassroots level.</p>
-      <p style="color:var(--ink-soft); margin:0;">My analysis focuses on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
+    <div class="about-photo-grid">
+      <div class="about-photo-col">
+        <img src="photos/profile.jpg" alt="Moubani Maitra" class="about-photo">
+        <p class="about-name">Moubani Maitra</p>
+      </div>
+      <div style="max-width:60ch;">
+        <p style="color:var(--ink-soft); margin:0 0 16px;">My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship has evolved in contemporary India — tracing this evolution from the Congress-led United Progressive Alliance to the BJP-led National Democratic Alliance, and asking how authoritarianism and neoliberalism manifest at the grassroots level.</p>
+        <p style="color:var(--ink-soft); margin:0;">My analysis focuses on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC AFFILIATIONS -->
+  <section id="affiliations" class="reveal">
+    <div class="section-head">
+      <h2>Academic Affiliations</h2>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Education</p>
+      <div class="cv-list">
+        <p class="cv-entry"><span class="cv-year">2022</span> PhD Researcher, Institute of Asian and Oriental Studies, University of Zurich <span class="cv-date">(ongoing)</span></p>
+        <p class="cv-entry"><span class="cv-year">2021</span> MA Development Studies, International Institute of Social Studies, The Hague, Netherlands</p>
+        <p class="cv-entry"><span class="cv-year">2019</span> MSc Economics, University of Calcutta</p>
+        <p class="cv-entry"><span class="cv-year">2017</span> BSc Economics, University of Calcutta</p>
+      </div>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Visiting Affiliations</p>
+      <div class="cv-list">
+        <p class="cv-entry"><span class="cv-year">2026</span> PhD Visiting Researcher, Department of Anthropology, University College London <span class="cv-date">(Jan–Jun)</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHD PROJECT -->
+  <section id="research" class="section-alt reveal">
+    <div class="section-head">
+      <h2>PhD Project</h2>
+    </div>
+    <article class="phd-project">
+      <h3>Contesting Democracy: Liberalisation, Institutions, and the State in Uttar Pradesh</h3>
+      <p>This dissertation examines shifts in India's political economy following the Bharatiya Janata Party's 2014 election victory, tracing this transformation through four major themes: the shrinking of the public sector through new forms of privatisation and state-business nexus, the reconfiguration of civil society, evictions and land dispossession, and the neoliberal welfare regime.</p>
+      <p>Taken together, these four themes demonstrate how the gap between formal and substantive democracy widens as contemporary manifestations of neoliberalism — through outsourcing and privatisation, the expansion of private capital, the erosion of labour rights, and the digitalisation of welfare schemes — intersect with authoritarian tendencies such as the centralisation of power, the weakening of due process, repression of civil society, and the erosion of accountability mechanisms. Collectively, these developments characterise a democratic decline under the BJP in India. I argue that democratic backsliding is often accomplished through seemingly ordinary legal operations of institutional power, rather than through overt rule-breaking or co-optation. But this requires alignment across multiple state actors and institutions, whose combined action creates conditions where erosion proceeds with minimal accountability.</p>
+      <div class="tags">
+        <span class="tag">neoliberalism</span>
+        <span class="tag">authoritarianism</span>
+        <span class="tag">political economy</span>
+        <span class="tag">Uttar Pradesh</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- FIELDWORK -->
+  <section id="fieldwork" class="fieldwork reveal">
+    <div class="section-head">
+      <h2>Fieldwork</h2>
+      <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:rgba(231,225,210,0.65); margin-top:14px;">Uttar Pradesh, 2023 – ongoing</p>
+    </div>
+    <div class="photo-essay">
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div></figure>
+      <figure class="photo-essay-item reveal"><div class="photo-frame"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div></figure>
+    </div>
+  </section>
+
+  <!-- WORK IN PROGRESS -->
+  <section id="publications" class="reveal">
+    <div class="section-head">
+      <h2>Work in Progress</h2>
+    </div>
+    <ul class="ledger">
+      <li class="pub">
+        <span class="pub-num">01</span>
+        <span>
+          <span class="pub-title">The Making of a Labharthi: Privatisation, Brokerage, and Rent Seeking in India's Flagship Housing Scheme</span>
+          <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+        </span>
+        <span class="pub-year">2026</span>
+        <span class="stamp-badge">Draft</span>
+      </li>
+      <li class="pub">
+        <span class="pub-num">02</span>
+        <span>
+          <span class="pub-title">The Architecture of Displacement: Evictions, Demolitions, and State Power in Uttar Pradesh</span>
+          <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+        </span>
+        <span class="pub-year">2026</span>
+        <span class="stamp-badge">Draft</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section id="activities" class="section-alt reveal">
+    <div class="section-head">
+      <h2>Conferences &amp; Workshops</h2>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Conferences</p>
+      <div class="cv-list">
+        <p class="cv-entry"><span class="cv-year">2026</span> — <em>European Association of Development Research and Training Institutes (EADI) Conference</em>, Institute of Development Policy, University of Antwerp <span class="cv-date">(20 Jun)</span></p>
+        <p class="cv-entry"><span class="cv-year">2026</span> — <em>European Urban Research Association (EURA) Conference</em>, Università Iuav di Venezia <span class="cv-date">(19 Jun)</span></p>
+        <p class="cv-entry"><span class="cv-year">2026</span> — <em>Development Studies Association of Ireland (DSAI) Conference</em>, Trinity College Dublin <span class="cv-date">(15 Jan)</span></p>
+        <p class="cv-entry"><span class="cv-year">2022</span> — <em>Annual South Asia Conference</em>, Ireland India Institute, Dublin City University <span class="cv-date">(29 Apr)</span></p>
+      </div>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Workshops</p>
+      <div class="cv-list">
+        <p class="cv-entry"><span class="cv-year">2026</span> — <em>TOIndia and EASAS 2026 PhD Workshop</em>, University of Turin, Department of Cultures, Politics and Society, Italy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching" class="reveal">
+    <div class="section-head">
+      <h2>Teaching &amp; Programme Coordination</h2>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Programme Coordination</p>
+      <div class="cv-list">
+        <p class="cv-entry"><span class="cv-year">2022–2026</span> Administrative Coordinator, MA in <em>Modern Asian and Middle Eastern Studies</em>, Institute of Asian and Oriental Studies, University of Zurich <span class="cv-date">(Fall 2022, Fall 2023, Fall 2024, Fall 2025, Fall 2026)</span></p>
+      </div>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Courses Taught</p>
+      <article class="course-card">
+        <h3>Critical Perspectives on Urban India</h3>
+        <p class="course-meta">Course Curator &amp; Lecturer · Fall 2026</p>
+        <p class="subhead" style="margin-bottom:12px;">Course Description</p>
+        <p>This course offers a critical, ethnographically grounded introduction to urban India, examining the social, political, and economic dynamics that produce inequality and exclusion in Indian cities. Key themes include the formal-informal divide, informal settlements, land rights and housing, precarious labour and the gig economy, welfare politics, the urban middle class, and questions of environment, gender, and citizenship. Drawing on case studies from Delhi, Mumbai, Hyderabad, and Bengaluru, the course situates these debates within specific political economy contexts while enabling comparative insight across urban India. It is suited to students in urban studies, anthropology, sociology, development studies, and social policy.</p>
+        <div class="tags">
+          <span class="tag">urban India</span>
+          <span class="tag">informality</span>
+          <span class="tag">land &amp; housing</span>
+          <span class="tag">gig economy</span>
+          <span class="tag">welfare politics</span>
+          <span class="tag">urban citizenship</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- GRANTS -->
+  <section id="grants" class="section-alt reveal">
+    <div class="section-head">
+      <h2>Grants</h2>
+    </div>
+    <div class="cv-list">
+      <p class="cv-entry"><span class="cv-year">2026</span> Research Travel Grant, Faculty of Arts and Social Sciences, University of Zurich <span class="cv-date">CHF 1,500</span></p>
+      <p class="cv-entry"><span class="cv-year">2025</span> Doc.Mobility Fellowship, University of Zurich <span class="cv-date">CHF 28,200</span></p>
+      <p class="cv-entry"><span class="cv-year">2024</span> Long Trip Grant, Faculty of Arts and Social Sciences, University of Zurich <span class="cv-date">CHF 1,000</span></p>
+      <p class="cv-entry"><span class="cv-year">2023</span> Long Trip Grant, Faculty of Arts and Social Sciences, University of Zurich <span class="cv-date">CHF 1,000</span></p>
+      <p class="cv-entry"><span class="cv-year">2023</span> GRC Travel Grant, Graduate School, University of Zurich <span class="cv-date">CHF 4,900</span></p>
+    </div>
+  </section>
+
+  <!-- SCHOLARSHIPS -->
+  <section id="scholarships" class="reveal">
+    <div class="section-head">
+      <h2>Scholarships</h2>
+    </div>
+    <div class="cv-list">
+      <p class="cv-entry"><span class="cv-year">2026</span> FREETORINO Scholarship, University of Turin, Department of Cultures, Politics and Society, Italy</p>
+      <p class="cv-entry"><span class="cv-year">2020</span> ISS Scholarship Fund for Excellent Students, International Institute of Social Studies, The Hague, Netherlands</p>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv" class="section-alt reveal">
+    <div class="section-head">
+      <h2>Curriculum Vitae</h2>
+    </div>
+    <div class="cv-box">
+      <div>
+        <h3 style="font-size:1.1rem;">Complete academic record</h3>
+        <p>Education, publications, presentations, grants, and teaching experience in full — updated [Month Year].</p>
+      </div>
+      <a class="btn btn-primary" href="#" download>Download CV (PDF)</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="section-head">
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-block">
+      <div>NAME&nbsp;&nbsp;&nbsp;&nbsp;Moubani Maitra</div>
+      <div>EMAIL&nbsp;&nbsp;&nbsp;<a href="mailto:moubani.maitra@uzh.ch">moubani.maitra@uzh.ch</a></div>
+      <div>OFFICE&nbsp;&nbsp;Rämistrasse 59, 8001 Zürich</div>
+      <div class="contact-links">
+        <span class="tag">ORCID</span>
+        <span class="tag">Google Scholar</span>
+        <span class="tag">Academia.edu</span>
+      </div>
     </div>
   </section>
 
@@ -51,7 +596,27 @@
   <span>Last filed: [Month Year]</span>
 </footer>
 
-<script src="script.js"></script>
+<script>
+  const toggle = document.getElementById('navToggle');
+  const tabs = document.getElementById('tabs');
+  toggle.addEventListener('click', () => tabs.classList.toggle('open'));
+  tabs.querySelectorAll('a').forEach(a => a.addEventListener('click', () => tabs.classList.remove('open')));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
 
 </body>
 </html>
