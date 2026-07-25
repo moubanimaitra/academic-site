@@ -200,42 +200,33 @@
   .fieldwork .eyebrow{ color:var(--brass); }
   .fieldwork .eyebrow::before{ background:var(--brass); }
   .fieldwork h2{ color:var(--paper); }
-  /* ---------- FIELDWORK — CINEMATIC PHOTO ESSAY ---------- */
-  .photo-essay{ display:flex; flex-direction:column; gap:10vh; }
-  .photo-essay-item{
-    width:100%;
-    max-width:920px;
-    position:relative;
-  }
-  .photo-essay-item:nth-child(even){ align-self:flex-end; }
-  .photo-essay-item:nth-child(odd){ align-self:flex-start; }
-  .photo-frame{
+  /* ---------- FIELDWORK — GALLERY MOSAIC ---------- */
+  .photo-rows{ display:flex; flex-direction:column; gap:16px; }
+  .photo-row{ display:grid; gap:16px; }
+  .photo-row.of-three{ grid-template-columns:repeat(3, 1fr); }
+  .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); }
+  .photo-row.of-three .photo-cell{ aspect-ratio:3/4; }
+  .photo-row.of-two .photo-cell{ aspect-ratio:3/2; }
+  .photo-cell{
     position:relative;
     overflow:hidden;
     border-radius:2px;
-    box-shadow:0 30px 70px rgba(0,0,0,0.45);
+    box-shadow:0 16px 34px rgba(0,0,0,0.4);
   }
-  .photo-frame img{
+  .photo-cell img{
     display:block;
     width:100%;
-    height:auto;
-    max-height:78vh;
-    object-fit:contain;
-    background:#1a100d;
+    height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
   }
-  .photo-frame::after{
+  .photo-cell:hover img{ transform:scale(1.05); }
+  .photo-cell::after{
     content:"";
     position:absolute;
     inset:0;
-    box-shadow:inset 0 0 90px rgba(0,0,0,0.5);
+    box-shadow:inset 0 0 40px rgba(0,0,0,0.35);
     pointer-events:none;
-  }
-  .frame-index{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.66rem;
-    letter-spacing:0.1em;
-    color:rgba(231,225,210,0.45);
-    margin-top:10px;
   }
 
   /* ---------- PUBLICATIONS / WORK IN PROGRESS ---------- */
@@ -334,7 +325,7 @@
     .about-grid{ grid-template-columns:1fr; }
     .about-photo-grid{ grid-template-columns:1fr; }
     .about-photo{ max-width:220px; }
-    .photo-essay-item{ max-width:100%; align-self:center !important; }
+    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -344,6 +335,11 @@
     }
     .pub{ grid-template-columns:32px 1fr; }
     .pub-year{ grid-column:2; }
+  }
+
+  @media (max-width: 520px){
+    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:1fr; }
+    .photo-row.of-three .photo-cell, .photo-row.of-two .photo-cell{ aspect-ratio:4/3; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -440,17 +436,25 @@
       <h2>Fieldwork</h2>
       <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:rgba(231,225,210,0.65); margin-top:14px;">Uttar Pradesh, 2023 – ongoing</p>
     </div>
-    <div class="photo-essay">
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div></figure>
-      <figure class="photo-essay-item"><div class="photo-frame"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div></figure>
+    <div class="photo-rows">
+      <div class="photo-row of-three">
+        <div class="photo-cell"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh"></div>
+        <div class="photo-cell"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall"></div>
+        <div class="photo-cell"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry"></div>
+      </div>
+      <div class="photo-row of-two">
+        <div class="photo-cell"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district"></div>
+        <div class="photo-cell"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling"></div>
+      </div>
+      <div class="photo-row of-three">
+        <div class="photo-cell"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane"></div>
+        <div class="photo-cell"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane"></div>
+        <div class="photo-cell"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair"></div>
+      </div>
+      <div class="photo-row of-two">
+        <div class="photo-cell"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
+        <div class="photo-cell"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
+      </div>
     </div>
   </section>
 
