@@ -203,22 +203,23 @@
 
   /* ---------- FIELDWORK — FRAMED GALLERY ---------- */
   .photo-rows{
-    max-width:760px;
+    max-width:820px;
     margin-left:auto;
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:16px;
   }
-  .photo-row{ display:grid; gap:20px; }
-  .photo-row.of-three{ grid-template-columns:repeat(3, 1fr); }
-  .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); }
-  .photo-row.of-three .photo-cell{ aspect-ratio:1/1; }
-  .photo-row.of-two .photo-cell{ aspect-ratio:4/3; }
+  .photo-row{ display:grid; gap:16px; height:clamp(180px, 26vw, 280px); }
+  .photo-row.row-1{ grid-template-columns:2fr 1fr 1fr; }
+  .photo-row.row-2{ grid-template-columns:1fr 1fr; }
+  .photo-row.row-3{ grid-template-columns:1fr 2fr 1fr; }
+  .photo-row.row-4{ grid-template-columns:2fr 1fr; }
   .photo-cell{
     position:relative;
     overflow:hidden;
-    border:7px solid var(--ink);
+    border:2px solid var(--ink);
     background:var(--paper-deep);
+    height:100%;
   }
   .photo-cell img{
     display:block;
@@ -325,7 +326,11 @@
     .about-grid{ grid-template-columns:1fr; }
     .about-photo-grid{ grid-template-columns:1fr; }
     .about-photo{ max-width:220px; }
-    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); }
+    .photo-row{ height:auto; }
+    .photo-row.row-1, .photo-row.row-3{ grid-template-columns:1fr 1fr; }
+    .photo-row.row-1 .photo-cell, .photo-row.row-3 .photo-cell{ height:220px; }
+    .photo-row.row-2, .photo-row.row-4{ grid-template-columns:1fr 1fr; }
+    .photo-row.row-2 .photo-cell, .photo-row.row-4 .photo-cell{ height:220px; }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -338,8 +343,8 @@
   }
 
   @media (max-width: 520px){
-    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:1fr; }
-    .photo-cell{ aspect-ratio:4/3; }
+    .photo-row{ grid-template-columns:1fr !important; height:auto; }
+    .photo-cell{ height:260px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -437,21 +442,21 @@
       <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:var(--ink-soft); margin-top:14px;">Uttar Pradesh, 2023 – ongoing</p>
     </div>
     <div class="photo-rows">
-      <div class="photo-row of-three">
+      <div class="photo-row row-1">
         <div class="photo-cell"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh"></div>
         <div class="photo-cell"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall"></div>
         <div class="photo-cell"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry"></div>
       </div>
-      <div class="photo-row of-two">
+      <div class="photo-row row-2">
         <div class="photo-cell"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district"></div>
         <div class="photo-cell"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling"></div>
       </div>
-      <div class="photo-row of-three">
+      <div class="photo-row row-3">
         <div class="photo-cell"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane"></div>
         <div class="photo-cell"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane"></div>
         <div class="photo-cell"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair"></div>
       </div>
-      <div class="photo-row of-two">
+      <div class="photo-row row-4">
         <div class="photo-cell"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
         <div class="photo-cell"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
       </div>
