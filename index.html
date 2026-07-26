@@ -12,8 +12,8 @@
     --paper: #FAFAF6;
     --paper-deep: #F1F0EA;
     --paper-line: rgba(122,46,34,0.18);
-    --ink: #7A2E22;
-    --ink-soft: #8F4A3A;
+    --ink: #571F17;
+    --ink-soft: #723A2C;
     --stamp: #9C2B34;
     --stamp-soft: rgba(156,43,52,0.12);
     --ledger: #241512;
@@ -34,6 +34,7 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
     position:relative;
+    overflow-x:hidden;
   }
   body::before{
     content:"";
@@ -131,7 +132,7 @@
   /* ---------- SECTION SHELL ---------- */
   section{ padding:88px 0; }
   .section-alt{ background:var(--paper-deep); }
-  .section-head{ margin-bottom:44px; max-width:60ch; }
+  .section-head{ margin-bottom:44px; max-width:60ch; margin-left:auto; }
   .section-head h2{ font-size:2rem; margin-top:10px; }
 
   .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
@@ -190,6 +191,7 @@
     border-radius:var(--radius);
     padding:40px;
     max-width:74ch;
+    margin-left:auto;
   }
   .phd-project h3{ font-size:1.6rem; line-height:1.32; margin:12px 0 20px; font-style:italic; font-weight:500; }
   .phd-project p{ color:var(--ink-soft); margin:0 0 18px; }
@@ -200,32 +202,36 @@
   .fieldwork .eyebrow{ color:var(--brass); }
   .fieldwork .eyebrow::before{ background:var(--brass); }
   .fieldwork h2{ color:var(--paper); }
-  /* ---------- FIELDWORK — GALLERY MOSAIC ---------- */
-  .photo-rows{ display:flex; flex-direction:column; gap:16px; }
-  .photo-row{ display:grid; gap:16px; }
-  .photo-row.of-three{ grid-template-columns:repeat(3, 1fr); }
-  .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); }
-  .photo-row.of-three .photo-cell{ aspect-ratio:3/4; }
-  .photo-row.of-two .photo-cell{ aspect-ratio:3/2; }
+  /* ---------- FIELDWORK — CINEMATIC FULL-BLEED ---------- */
+  .photo-rows{
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    margin-right:calc(50% - 50vw);
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .photo-row{ display:grid; gap:6px; }
+  .photo-row.of-three{ grid-template-columns:repeat(3, 1fr); height:58vh; }
+  .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); height:72vh; }
   .photo-cell{
     position:relative;
     overflow:hidden;
-    border-radius:2px;
-    box-shadow:0 16px 34px rgba(0,0,0,0.4);
   }
   .photo-cell img{
     display:block;
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:transform .5s ease;
+    filter:saturate(0.92) contrast(1.03);
+    transition:transform 1.2s cubic-bezier(.2,.7,.3,1);
   }
-  .photo-cell:hover img{ transform:scale(1.05); }
+  .photo-cell:hover img{ transform:scale(1.045); }
   .photo-cell::after{
     content:"";
     position:absolute;
     inset:0;
-    box-shadow:inset 0 0 40px rgba(0,0,0,0.35);
+    background:linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.32) 100%);
     pointer-events:none;
   }
 
@@ -259,6 +265,7 @@
     border-radius:var(--radius);
     padding:36px;
     max-width:74ch;
+    margin-left:auto;
   }
   .course-card h3{ font-size:1.4rem; line-height:1.32; margin:0 0 8px; font-style:italic; font-weight:500; }
   .course-card .course-meta{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em; color:var(--ink-soft); margin:0 0 20px; }
@@ -276,7 +283,7 @@
     color:var(--verdigris);
     margin-bottom:10px;
   }
-  .cv-list{ margin:0; padding:0; }
+  .cv-list{ margin:0; padding:0; max-width:66ch; margin-left:auto; }
   .cv-entry{
     margin:0 0 11px;
     font-size:0.92rem;
@@ -307,6 +314,7 @@
     border-radius:var(--radius);
     padding:28px 32px;
     max-width:52ch;
+    margin-left:auto;
   }
   .contact-block a{ color:var(--stamp); text-decoration:none; border-bottom:1px solid transparent; }
   .contact-block a:hover{ border-color:var(--stamp); }
@@ -325,7 +333,7 @@
     .about-grid{ grid-template-columns:1fr; }
     .about-photo-grid{ grid-template-columns:1fr; }
     .about-photo{ max-width:220px; }
-    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); }
+    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:repeat(2, 1fr); height:48vh; }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -338,8 +346,8 @@
   }
 
   @media (max-width: 520px){
-    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:1fr; }
-    .photo-row.of-three .photo-cell, .photo-row.of-two .photo-cell{ aspect-ratio:4/3; }
+    .photo-row.of-three, .photo-row.of-two{ grid-template-columns:1fr; height:auto; }
+    .photo-cell{ aspect-ratio:4/3; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -375,7 +383,7 @@
 
   <!-- ABOUT -->
   <section id="about" class="reveal" style="padding-top:150px;">
-    <div class="section-head">
+    <div class="section-head" style="margin-left:0;">
       <h2>About</h2>
     </div>
     <div class="about-photo-grid">
@@ -438,22 +446,22 @@
     </div>
     <div class="photo-rows">
       <div class="photo-row of-three">
-        <div class="photo-cell"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh"></div>
-        <div class="photo-cell"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall"></div>
-        <div class="photo-cell"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry"></div>
+        <div class="photo-cell"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh" style="object-position:30% center;"></div>
+        <div class="photo-cell"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall" style="object-position:center 35%;"></div>
+        <div class="photo-cell"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry" style="object-position:center 45%;"></div>
       </div>
       <div class="photo-row of-two">
-        <div class="photo-cell"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district"></div>
-        <div class="photo-cell"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling"></div>
+        <div class="photo-cell"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district" style="object-position:center 20%;"></div>
+        <div class="photo-cell"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling" style="object-position:center 30%;"></div>
       </div>
       <div class="photo-row of-three">
-        <div class="photo-cell"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane"></div>
-        <div class="photo-cell"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane"></div>
-        <div class="photo-cell"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair"></div>
+        <div class="photo-cell"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane" style="object-position:center 25%;"></div>
+        <div class="photo-cell"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane" style="object-position:center 20%;"></div>
+        <div class="photo-cell"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair" style="object-position:center 30%;"></div>
       </div>
       <div class="photo-row of-two">
-        <div class="photo-cell"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
-        <div class="photo-cell"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
+        <div class="photo-cell"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh" style="object-position:center 20%;"></div>
+        <div class="photo-cell"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh" style="object-position:center 40%;"></div>
       </div>
     </div>
   </section>
