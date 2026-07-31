@@ -209,10 +209,15 @@
     gap:18px;
     flex-wrap:wrap;
   }
-  .photo-main{
-    margin:0;
+  .photo-main-col{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
     flex:0 1 460px;
     max-width:460px;
+  }
+  .photo-main{
+    margin:0;
   }
   .photo-main img{
     display:block;
@@ -398,7 +403,7 @@
     .about-photo-grid{ grid-template-columns:1fr; }
     .about-photo{ max-width:220px; }
     .photo-collage{ flex-direction:column; align-items:stretch; }
-    .photo-main{ max-width:100%; }
+    .photo-main-col{ max-width:100%; }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -508,10 +513,16 @@
       <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:var(--ink-soft); margin-top:14px;">Uttar Pradesh, 2023 – ongoing · 13 months</p>
     </div>
     <div class="photo-collage">
-      <figure class="photo-main">
-        <img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh">
-        <figcaption>Woman and her kutcha house in an informal settlement, Lucknow</figcaption>
-      </figure>
+      <div class="photo-main-col">
+        <figure class="photo-main">
+          <img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh">
+          <figcaption>Woman and her kutcha house in an informal settlement, Lucknow</figcaption>
+        </figure>
+        <figure class="photo-main">
+          <img src="photos/photo12.jpg" alt="Beneficiary standing in front of her PMAY house, face blurred for privacy">
+          <figcaption>Labharthi (beneficiary) in front of her PMAY house</figcaption>
+        </figure>
+      </div>
       <div class="photo-side">
         <figure class="photo-cell">
           <img src="photos/photo2.jpg" alt="Two goats resting against a brick wall">
@@ -536,10 +547,6 @@
         <figure class="photo-cell">
           <img src="photos/photo11.jpg" alt="PMAY resettlement colony housing blocks">
           <figcaption>PMAY Resettlement Colony</figcaption>
-        </figure>
-        <figure class="photo-cell">
-          <img src="photos/photo12.jpg" alt="Beneficiary standing in front of her PMAY house, face blurred for privacy">
-          <figcaption>Labharthi (beneficiary) in front of her PMAY house</figcaption>
         </figure>
       </div>
     </div>
