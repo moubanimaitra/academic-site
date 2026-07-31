@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper: #FAFAF6;
-    --paper-deep: #F1F0EA;
+    --paper: #FFFFFF;
+    --paper-deep: #F1F0EC;
     --paper-line: rgba(122,46,34,0.18);
     --ink: #571F17;
     --ink-soft: #723A2C;
@@ -35,16 +35,7 @@
     -webkit-font-smoothing:antialiased;
     position:relative;
     overflow-x:hidden;
-  }
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity:0.07;
-    mix-blend-mode:multiply;
-    pointer-events:none;
-    z-index:999;
+    padding-left:200px;
   }
 
   .eyebrow{
@@ -78,15 +69,18 @@
 
   /* ---------- HEADER ---------- */
   .site-header{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    background:rgba(250,250,246,0.92);
+    position:fixed; top:0; left:0; bottom:0; width:200px; z-index:50;
+    background:rgba(255,255,255,0.92);
     backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--paper-line);
+    border-right:1px solid var(--paper-line);
+    border-bottom:none;
+    overflow-y:auto;
   }
   .header-row{
-    max-width:var(--maxw); margin:0 auto; padding:0 32px;
-    display:flex; align-items:center; justify-content:space-between;
-    height:64px;
+    height:100%;
+    padding:32px 20px;
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+    gap:24px;
   }
   .mark{
     font-family:'IBM Plex Mono', monospace;
@@ -97,22 +91,24 @@
     border-radius:var(--radius);
     text-decoration:none;
   }
-  .tabs{display:flex; flex-wrap:wrap; gap:2px; list-style:none; margin:0; padding:0;}
+  .tabs{display:flex; flex-direction:column; flex-wrap:nowrap; gap:2px; list-style:none; margin:0; padding:0; width:100%;}
   .tabs a{
     display:block;
     font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    letter-spacing:0.05em;
+    font-size:0.66rem;
+    letter-spacing:0.03em;
     text-transform:uppercase;
     text-decoration:none;
     color:var(--ink-soft);
-    padding:10px 12px;
+    padding:9px 10px;
+    white-space:nowrap;
     border:1px solid transparent;
-    border-bottom:none;
-    border-radius:var(--radius) var(--radius) 0 0;
+    border-left:2px solid transparent;
+    border-radius:0;
     transition:color .2s ease, border-color .2s ease, background .2s ease;
   }
-  .tabs a:hover{ color:var(--stamp); background:var(--paper-deep); border-color:var(--paper-line); }
+  .tabs a:hover{ color:var(--stamp); background:var(--paper-deep); border-left-color:var(--paper-line); }
+  .tabs a.active{ color:var(--stamp); border-left-color:var(--stamp); }
   .nav-toggle{ display:none; background:none; border:1px solid var(--ink); border-radius:var(--radius); padding:8px 10px; font-family:'IBM Plex Mono',monospace; }
 
   .btn{
@@ -128,9 +124,12 @@
   }
   .btn-primary{ background:var(--stamp); color:var(--paper); }
   .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(156,43,52,0.28); }
+  .btn-ghost{ border:1px solid var(--ink); color:var(--ink); background:none; }
+  .btn-ghost:hover{ transform:translateY(-2px); background:var(--ink); color:var(--paper); }
 
   /* ---------- SECTION SHELL ---------- */
-  section{ padding:88px 0; }
+  section{ padding:56px 0; }
+  .about-section{ padding-top:56px; }
   .section-alt{ background:var(--paper-deep); }
   .section-head{ margin-bottom:44px; max-width:640px; margin:0 auto 44px; text-align:center; }
   .section-head h2{ font-size:2rem; margin-top:10px; }
@@ -201,37 +200,51 @@
   .fieldwork{ background:var(--paper); color:var(--ink); }
   .fieldwork h2{ color:var(--ink); }
 
-  /* ---------- FIELDWORK — BLOCK COLLAGE ---------- */
+  /* ---------- FIELDWORK — HERO + SIDE GRID (no cropping) ---------- */
   .photo-collage{
-    max-width:800px;
+    max-width:1100px;
     margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    grid-template-rows:220px 220px 240px 240px 260px;
-    gap:14px;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    flex-wrap:wrap;
   }
-  .pc-1{ grid-column:1 / 3; grid-row:1; }
-  .pc-2{ grid-column:3 / 4; grid-row:1; }
-  .pc-3{ grid-column:1 / 2; grid-row:2; }
-  .pc-4{ grid-column:2 / 3; grid-row:2; }
-  .pc-5{ grid-column:3 / 4; grid-row:2; }
-  .pc-6{ grid-column:1 / 2; grid-row:3; }
-  .pc-7{ grid-column:2 / 4; grid-row:3; }
-  .pc-8{ grid-column:1 / 2; grid-row:4; }
-  .pc-9{ grid-column:2 / 4; grid-row:4; }
-  .pc-10{ grid-column:1 / 4; grid-row:5; }
-  .photo-cell{
-    position:relative;
-    overflow:hidden;
+  .photo-main{
+    margin:0;
+    flex:0 1 460px;
+    max-width:460px;
+  }
+  .photo-main img{
+    display:block;
+    width:100%;
+    height:auto;
     border:2px solid var(--ink);
-    background:var(--paper-deep);
-    height:100%;
+    box-sizing:border-box;
+  }
+  .photo-side{
+    flex:1 1 500px;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    align-content:start;
+    gap:16px 16px;
+  }
+  .photo-cell{
+    margin:0;
   }
   .photo-cell img{
     display:block;
     width:100%;
-    height:100%;
-    object-fit:contain;
+    height:auto;
+    border:2px solid var(--ink);
+    box-sizing:border-box;
+  }
+  .photo-main figcaption, .photo-cell figcaption{
+    margin-top:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.02em;
+    line-height:1.4;
+    color:var(--ink-soft);
   }
 
   /* ---------- PUBLICATIONS / WORK IN PROGRESS ---------- */
@@ -257,12 +270,37 @@
   }
   .pub:hover .stamp-badge{ opacity:1; transform:rotate(-8deg) scale(1); }
 
+  .pub-details summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+  }
+  .pub-details summary::-webkit-details-marker{ display:none; }
+  .pub-hint{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.04em;
+    color:var(--brass);
+    margin-left:auto;
+    white-space:nowrap;
+    padding-left:12px;
+  }
+  .pub-hint-open{ display:none; }
+  .pub-details[open] .pub-hint-open{ display:inline; }
+  .pub-details[open] .pub-hint-closed{ display:none; }
+  .pub-desc{
+    margin:12px 0 0;
+    font-style:normal;
+    font-size:0.92rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:66ch;
+  }
+
   /* ---------- TEACHING ---------- */
   .course-card{
-    background:var(--paper);
-    border:1px solid var(--paper-line);
-    border-radius:var(--radius);
-    padding:36px;
     max-width:640px;
     margin:0 auto;
   }
@@ -270,6 +308,14 @@
   .course-card .course-meta{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em; color:var(--ink-soft); margin:0 0 20px; text-align:center; }
   .course-card p:not(.course-meta){ color:var(--ink-soft); margin:0 0 16px; }
   .course-card .tags{ margin-top:6px; justify-content:center; }
+  .course-details{ text-align:center; margin:0 0 20px; }
+  .course-desc-btn{
+    display:inline-block;
+    list-style:none;
+    cursor:pointer;
+  }
+  .course-desc-btn::-webkit-details-marker{ display:none; }
+  .course-details p{ text-align:left; margin-top:18px !important; }
 
   /* ---------- SUB-BLOCKS (Activities, Coordination) ---------- */
   .subblock{ margin-bottom:16px; }
@@ -336,17 +382,23 @@
   }
 
   @media (max-width: 860px){
+    body{ padding-left:0; }
+    .site-header{
+      position:fixed; top:0; left:0; right:0; bottom:auto; width:auto; height:64px;
+      border-right:none;
+      border-bottom:1px solid var(--paper-line);
+    }
+    .header-row{
+      max-width:var(--maxw); margin:0 auto; padding:0 32px;
+      flex-direction:row; align-items:center; justify-content:space-between;
+      height:64px; gap:0;
+    }
+    .about-section{ padding-top:120px; }
     .about-grid{ grid-template-columns:1fr; }
     .about-photo-grid{ grid-template-columns:1fr; }
     .about-photo{ max-width:220px; }
-    .photo-collage{
-      grid-template-columns:repeat(2, 1fr);
-      grid-template-rows:none;
-      grid-auto-rows:200px;
-    }
-    .pc-1, .pc-2, .pc-3, .pc-4, .pc-5, .pc-6, .pc-7, .pc-8, .pc-9, .pc-10{
-      grid-column:auto; grid-row:auto;
-    }
+    .photo-collage{ flex-direction:column; align-items:stretch; }
+    .photo-main{ max-width:100%; }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -359,14 +411,7 @@
   }
 
   @media (max-width: 520px){
-    .photo-collage{
-      grid-template-columns:1fr;
-      grid-template-rows:none;
-      grid-auto-rows:240px;
-    }
-    .pc-1, .pc-2, .pc-3, .pc-4, .pc-5, .pc-6, .pc-7, .pc-8, .pc-9, .pc-10{
-      grid-column:auto; grid-row:auto;
-    }
+    .photo-side{ grid-template-columns:1fr; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -401,18 +446,17 @@
 <main class="wrap">
 
   <!-- ABOUT -->
-  <section id="about" class="reveal" style="padding-top:150px;">
+  <section id="about" class="reveal about-section">
     <div class="section-head" style="margin:0 0 44px; text-align:left;">
-      <h2>About</h2>
+      <h2>Moubani Maitra</h2>
     </div>
     <div class="about-photo-grid">
       <div class="about-photo-col">
         <img src="photos/profile.jpg" alt="Moubani Maitra" class="about-photo">
-        <p class="about-name">Moubani Maitra</p>
       </div>
       <div style="max-width:60ch;">
-        <p style="color:var(--ink-soft); margin:0 0 16px;">My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship has evolved in contemporary India — tracing this evolution from the Congress-led United Progressive Alliance to the BJP-led National Democratic Alliance, and asking how authoritarianism and neoliberalism manifest at the grassroots level.</p>
-        <p style="color:var(--ink-soft); margin:0;">My analysis focuses on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
+        <p style="color:var(--ink-soft); margin:0 0 16px;">My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship and democracy have evolved in contemporary India. Some of the questions guiding my research include: in what ways has labour precarity been produced through new forms of privatisation? How has civil society been reconfigured under the contemporary Indian state? And what does the shift from entitlements to empowerment in welfare delivery, alongside the growing digitalisation of welfare schemes, tell us about the contemporary welfare regime?</p>
+        <p style="color:var(--ink-soft); margin:0;">In addressing these questions, I ground my analysis in empirical evidence while situating it within a theoretical framework drawing on political anthropology, political science, development studies, and urban studies. My research examines the intersection of neoliberalism and authoritarianism, focusing on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
       </div>
     </div>
   </section>
@@ -447,7 +491,7 @@
     <article class="phd-project">
       <h3>Contesting Democracy: Liberalisation, Institutions, and the State in Uttar Pradesh</h3>
       <p>This dissertation examines shifts in India's political economy following the Bharatiya Janata Party's 2014 election victory, tracing this transformation through four major themes: the shrinking of the public sector through new forms of privatisation and state-business nexus, the reconfiguration of civil society, evictions and land dispossession, and the neoliberal welfare regime.</p>
-      <p>Taken together, these four themes demonstrate how the gap between formal and substantive democracy widens as contemporary manifestations of neoliberalism — through outsourcing and privatisation, the expansion of private capital, the erosion of labour rights, and the digitalisation of welfare schemes — intersect with authoritarian tendencies such as the centralisation of power, the weakening of due process, repression of civil society, and the erosion of accountability mechanisms. Collectively, these developments characterise a democratic decline under the BJP in India. I argue that democratic backsliding is often accomplished through seemingly ordinary legal operations of institutional power, rather than through overt rule-breaking or co-optation. But this requires alignment across multiple state actors and institutions, whose combined action creates conditions where erosion proceeds with minimal accountability.</p>
+      <p>Taken together, these four themes demonstrate how the gap between formal and substantive democracy widens as contemporary manifestations of neoliberalism — through outsourcing and privatisation, the expansion of private capital, the erosion of labour rights, and the digitalisation of welfare schemes — intersect with authoritarian tendencies such as the centralisation of power, the weakening of due process, repression of civil society, and the erosion of accountability mechanisms. Collectively, these developments characterise a democratic decline under the BJP in India. I argue that democratic backsliding is often accomplished through seemingly ordinary legal operations of institutional power, rather than just institutional co-optation or overt rule-breaking, as has been pointed out earlier by researchers. However, this requires alignment across multiple state actors and institutions, whose combined action creates conditions where erosion proceeds with minimal accountability.</p>
       <div class="tags">
         <span class="tag">neoliberalism</span>
         <span class="tag">authoritarianism</span>
@@ -461,19 +505,43 @@
   <section id="fieldwork" class="fieldwork reveal">
     <div class="section-head">
       <h2>Fieldwork</h2>
-      <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:var(--ink-soft); margin-top:14px;">Uttar Pradesh, 2023 – ongoing</p>
+      <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:var(--ink-soft); margin-top:14px;">Uttar Pradesh, 2023 – ongoing · 13 months</p>
     </div>
     <div class="photo-collage">
-      <div class="photo-cell pc-1"><img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh"></div>
-      <div class="photo-cell pc-2"><img src="photos/photo2.jpg" alt="Two goats resting against a brick wall"></div>
-      <div class="photo-cell pc-3"><img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry"></div>
-      <div class="photo-cell pc-4"><img src="photos/photo4.jpg" alt="Anganwadi centre noticeboard on child nutrition, Aseni-II, Barabanki district"></div>
-      <div class="photo-cell pc-5"><img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling"></div>
-      <div class="photo-cell pc-6"><img src="photos/photo6.jpg" alt="Workers on a building ledge in a narrow lane"></div>
-      <div class="photo-cell pc-7"><img src="photos/photo7.jpg" alt="Woman carrying a child through a narrow lane"></div>
-      <div class="photo-cell pc-8"><img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair"></div>
-      <div class="photo-cell pc-9"><img src="photos/photo9.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
-      <div class="photo-cell pc-10"><img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh"></div>
+      <figure class="photo-main">
+        <img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh">
+        <figcaption>Woman and her kutcha house in an informal settlement, Lucknow</figcaption>
+      </figure>
+      <div class="photo-side">
+        <figure class="photo-cell">
+          <img src="photos/photo2.jpg" alt="Two goats resting against a brick wall">
+          <figcaption>Animals reared for livestock</figcaption>
+        </figure>
+        <figure class="photo-cell">
+          <img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry">
+          <figcaption>A cow beneath a clothesline</figcaption>
+        </figure>
+        <figure class="photo-cell">
+          <img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling">
+          <figcaption>A woman entering her brick makeshift home after her pucca house was demolished, in Hardoi</figcaption>
+        </figure>
+        <figure class="photo-cell">
+          <img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair">
+          <figcaption>Mazdoor ke haath (hands of a labourer)</figcaption>
+        </figure>
+        <figure class="photo-cell">
+          <img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh">
+          <figcaption>Charpai</figcaption>
+        </figure>
+        <figure class="photo-cell">
+          <img src="photos/photo11.jpg" alt="PMAY resettlement colony housing blocks">
+          <figcaption>PMAY Resettlement Colony</figcaption>
+        </figure>
+        <figure class="photo-cell">
+          <img src="photos/photo12.jpg" alt="Beneficiary standing in front of her PMAY house, face blurred for privacy">
+          <figcaption>Labharthi (beneficiary) in front of her PMAY house</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -486,8 +554,20 @@
       <li class="pub">
         <span class="pub-num">01</span>
         <span>
-          <span class="pub-title">The Making of a Labharthi: Privatisation, Brokerage, and Rent Seeking in India's Flagship Housing Scheme</span>
-          <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+          <details class="pub-details">
+            <summary>
+              <span>
+                <span class="pub-title">The Making of a Labharthi: Privatisation, Brokerage, and Rent Seeking in India's Flagship Housing Scheme</span>
+                <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+              </span>
+              <span class="pub-hint">
+                <span class="pub-hint-closed">Read abstract</span>
+                <span class="pub-hint-open">Hide abstract</span>
+              </span>
+            </summary>
+            <p class="pub-desc">Digital technologies have increasingly been incorporated into social policy to improve welfare delivery, underpinning a neoliberal welfare regime. In India, Aadhaar-enabled systems and Direct Benefit Transfers (DBTs) have become central to what scholars term the BJP government's "new welfarism," which reconfigures welfare around two features: first, provisioning goods such as housing, toilets, and gas connections through centrally sponsored schemes; and second, an explicit reliance on digital technologies to deliver benefits directly into beneficiaries' bank accounts. The figure of the labharthi (beneficiary) has become closely associated with DBT-based welfare and with political narratives that centralize credit to Prime Minister Narendra Modi. Uttar Pradesh, for instance, has claimed some of the highest numbers of beneficiaries nationwide, including over 130 million beneficiaries across six major DBT schemes, and the highest number of completed urban houses under the Pradhan Mantri Awas Yojana (Urban) [PMAY(U)].</p>
+            <p class="pub-desc">This paper investigates PMAY(U), a flagship housing programme that employs geo-tagging applications to deliver cash transfers, in order to understand how individuals access the scheme and become beneficiaries through their interactions with state and non-state actors. The findings show that despite DBTs and digitalization, brokerage continues to shape access, especially for landless applicants, with local brokers and elected representatives often mediating early approval stages. Simultaneously, DBTs have generated what I call a new layer of intermediaries, particularly private consultants, who extract rents at different stages, undermining claims of eliminating middlemen. Amid rapid urbanization and limited state capacity, the paper argues that digitalized welfare can deepen citizens' dependence on intermediaries, diffusing accountability and creating new avenues for rent-seeking.</p>
+          </details>
         </span>
         <span class="pub-year">2026</span>
         <span class="stamp-badge">Draft</span>
@@ -495,8 +575,19 @@
       <li class="pub">
         <span class="pub-num">02</span>
         <span>
-          <span class="pub-title">The Architecture of Displacement: Evictions, Demolitions, and State Power in Uttar Pradesh</span>
-          <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+          <details class="pub-details">
+            <summary>
+              <span>
+                <span class="pub-title">The Architecture of Displacement: Evictions, Demolitions, and State Power in Uttar Pradesh</span>
+                <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+              </span>
+              <span class="pub-hint">
+                <span class="pub-hint-closed">Read abstract</span>
+                <span class="pub-hint-open">Hide abstract</span>
+              </span>
+            </summary>
+            <p class="pub-desc">This chapter examines how evictions and dispossession unfold in contemporary India. Recent scholarship has emphasized the communal character of such evictions, highlighting their disproportionate targeting of Muslim neighbourhoods and dissenters, with the bulldozer emerging as a central symbol in BJP-ruled states and election campaigns. This chapter argues that even where eviction follows an ostensibly procedural process, the bulldozer's effective operation depends on specific structural conditions rooted in the institutional settings through which eviction orders are issued and subsequently legitimised. Focusing on the eviction of a Muslim-majority neighbourhood in Uttar Pradesh, I show how the institutional design of development authorities — where the internal appellate mechanism is structurally compromised — enables the deployment of coercive capacity, through police and central security forces, and infrastructural means, through the cooperation of utility providers withdrawing essential services. Even institutions with independence from the development authority arrived at aligned outcomes: courts engaged with residents' challenges, granting stays and hearing negotiations, yet ultimately validated the eviction and offered resettlement as remedy. I argue that executive reach in such cases is achieved neither through institutional co-optation nor through the breaking of institutional rules, but through the exploitation of gaps within an accountability structure that continues, formally, to function.</p>
+          </details>
         </span>
         <span class="pub-year">2026</span>
         <span class="stamp-badge">Draft</span>
@@ -507,7 +598,7 @@
   <!-- ACTIVITIES -->
   <section id="activities" class="section-alt reveal">
     <div class="section-head">
-      <h2>Conferences &amp; Workshops</h2>
+      <h2>Activities</h2>
     </div>
     <div class="subblock">
       <p class="subhead">Conferences</p>
@@ -522,6 +613,12 @@
       <p class="subhead">Workshops</p>
       <div class="cv-list">
         <p class="cv-entry"><span class="cv-year">2026</span><span class="cv-desc"><em>TOIndia and EASAS 2026 PhD Workshop</em>, University of Turin, Department of Cultures, Politics and Society, Italy</span></p>
+      </div>
+    </div>
+    <div class="subblock">
+      <p class="subhead">Consultancy Work</p>
+      <div class="cv-list">
+        <p class="cv-entry"><span class="cv-year">2025</span><span class="cv-desc">Consulted for an exhibition at Fotomuseum Winterthur (Winterthur, Switzerland), exploring themes of state violence, trauma, and feminist resistance through speculative storytelling <span class="cv-date">(Mar)</span></span></p>
       </div>
     </div>
   </section>
@@ -542,8 +639,10 @@
       <article class="course-card">
         <h3>Critical Perspectives on Urban India</h3>
         <p class="course-meta">Course Curator &amp; Lecturer · Fall 2026</p>
-        <p class="subhead" style="margin-bottom:12px;">Course Description</p>
-        <p>This course offers a critical, ethnographically grounded introduction to urban India, examining the social, political, and economic dynamics that produce inequality and exclusion in Indian cities. Key themes include the formal-informal divide, informal settlements, land rights and housing, precarious labour and the gig economy, welfare politics, the urban middle class, and questions of environment, gender, and citizenship. Drawing on case studies from Delhi, Mumbai, Hyderabad, and Bengaluru, the course situates these debates within specific political economy contexts while enabling comparative insight across urban India. It is suited to students in urban studies, anthropology, sociology, development studies, and social policy.</p>
+        <details class="course-details">
+          <summary class="btn btn-ghost course-desc-btn">Course Description</summary>
+          <p>This course offers a critical, ethnographically grounded introduction to urban India, examining the social, political, and economic dynamics that produce inequality and exclusion in Indian cities. Key themes include the formal-informal divide, informal settlements, land rights and housing, precarious labour and the gig economy, welfare politics, the urban middle class, and questions of environment, gender, and citizenship. Drawing on case studies from Delhi, Mumbai, Hyderabad, and Bengaluru, the course situates these debates within specific political economy contexts while enabling comparative insight across urban India. It is suited to students in urban studies, anthropology, sociology, development studies, and social policy.</p>
+        </details>
         <div class="tags">
           <span class="tag">urban India</span>
           <span class="tag">informality</span>
@@ -615,8 +714,7 @@
 </main>
 
 <footer class="wrap">
-  <span>© 2026 Moubani Maitra. Built as a field record, not a final draft.</span>
-  <span>Last filed: [Month Year]</span>
+  <span>© 2026 Moubani Maitra.</span>
 </footer>
 
 <script>
