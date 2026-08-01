@@ -227,14 +227,18 @@
     box-sizing:border-box;
   }
   .photo-side{
-    flex:1 1 500px;
+    flex:1 1 440px;
+    max-width:460px;
     display:grid;
     grid-template-columns:repeat(2, 1fr);
     align-content:start;
-    gap:16px 16px;
+    gap:14px 14px;
   }
   .photo-cell{
     margin:0;
+  }
+  .photo-cell.wide{
+    grid-column:1 / -1;
   }
   .photo-cell img{
     display:block;
@@ -548,7 +552,7 @@
           <img src="photos/photo11.jpg" alt="PMAY resettlement colony housing blocks">
           <figcaption>PMAY Resettlement Colony</figcaption>
         </figure>
-        <figure class="photo-cell">
+        <figure class="photo-cell wide">
           <img src="photos/photo13.jpg" alt="Billboard advertising the state's free ration scheme, featuring the Uttar Pradesh Chief Minister and Prime Minister">
           <figcaption>State welfare billboard, free ration scheme</figcaption>
         </figure>
