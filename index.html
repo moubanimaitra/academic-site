@@ -199,58 +199,34 @@
   /* ---------- FIELDWORK ---------- */
   .fieldwork{ background:var(--paper); color:var(--ink); }
   .fieldwork h2{ color:var(--ink); }
+  .fieldwork-intro{
+    max-width:60ch;
+    color:var(--ink-soft);
+    margin:16px 0 0;
+  }
 
-  /* ---------- FIELDWORK — HERO + SIDE GRID (no cropping) ---------- */
-  .photo-collage{
-    max-width:1100px;
+  /* ---------- FIELDWORK — PHOTOGRAPHY PORTFOLIO ---------- */
+  .photo-portfolio{
+    max-width:900px;
     margin:0 auto;
     display:flex;
-    align-items:flex-start;
-    gap:18px;
-    flex-wrap:wrap;
-  }
-  .photo-main-col{
-    display:flex;
     flex-direction:column;
-    gap:18px;
-    flex:0 1 460px;
-    max-width:460px;
+    gap:56px;
   }
-  .photo-main{
+  .photo-portfolio figure{
     margin:0;
   }
-  .photo-main img{
+  .photo-portfolio img{
     display:block;
     width:100%;
     height:auto;
     border:2px solid var(--ink);
     box-sizing:border-box;
   }
-  .photo-side{
-    flex:1 1 440px;
-    max-width:460px;
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    align-content:start;
-    gap:14px 14px;
-  }
-  .photo-cell{
-    margin:0;
-  }
-  .photo-cell.wide{
-    grid-column:1 / -1;
-  }
-  .photo-cell img{
-    display:block;
-    width:100%;
-    height:auto;
-    border:2px solid var(--ink);
-    box-sizing:border-box;
-  }
-  .photo-main figcaption, .photo-cell figcaption{
-    margin-top:8px;
+  .photo-portfolio figcaption{
+    margin-top:10px;
     font-family:'IBM Plex Mono', monospace;
-    font-size:0.68rem;
+    font-size:0.72rem;
     letter-spacing:0.02em;
     line-height:1.4;
     color:var(--ink-soft);
@@ -327,6 +303,14 @@
 
   /* ---------- SUB-BLOCKS (Activities, Coordination) ---------- */
   .subblock{ margin-bottom:16px; }
+  .lang-tools-compact{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .lang-tools-compact .subhead{ margin-bottom:8px; }
+  .lang-tools-compact .tags{ gap:5px; justify-content:center; }
+  .lang-tools-compact .tag{ font-size:0.62rem; padding:3px 7px; }
   .subblock:last-child{ margin-bottom:0; }
   .subhead{
     font-family:'IBM Plex Mono', monospace;
@@ -404,9 +388,9 @@
     .about-section{ padding-top:120px; }
     .about-grid{ grid-template-columns:1fr; }
     .about-photo-grid{ grid-template-columns:1fr; }
+    .lang-tools-compact{ grid-template-columns:1fr; gap:16px; }
     .about-photo{ max-width:220px; }
-    .photo-collage{ flex-direction:column; align-items:stretch; }
-    .photo-main-col{ max-width:100%; }
+    .photo-portfolio{ gap:36px; }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -415,10 +399,6 @@
       padding:6px; max-height:80vh; overflow-y:auto;
     }
     .pub{ grid-template-columns:32px 1fr; }
-  }
-
-  @media (max-width: 520px){
-    .photo-side{ grid-template-columns:1fr; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -441,7 +421,6 @@
         <li><a href="#activities">Activities</a></li>
         <li><a href="#teaching">Teaching</a></li>
         <li><a href="#grants">Grants</a></li>
-        <li><a href="#scholarships">Scholarships</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -462,8 +441,9 @@
         <img src="photos/profile.jpg" alt="Moubani Maitra" class="about-photo">
       </div>
       <div style="max-width:60ch;">
-        <p style="color:var(--ink-soft); margin:0 0 16px;">My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship and democracy have evolved in contemporary India. Some of the questions guiding my research include: in what ways has labour precarity been produced through new forms of privatisation? How has civil society been reconfigured under the contemporary Indian state? And what does the shift from entitlements to empowerment in welfare delivery, alongside the growing digitalisation of welfare schemes, tell us about the contemporary welfare regime?</p>
-        <p style="color:var(--ink-soft); margin:0;">In addressing these questions, I ground my analysis in empirical evidence while situating it within a theoretical framework drawing on political anthropology, political science, development studies, and urban studies. My research examines the intersection of neoliberalism and authoritarianism, focusing on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
+        <p style="color:var(--ink-soft); margin:0 0 16px;">I'm a writer and social science researcher currently based in Zürich, Switzerland. My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship and democracy have evolved in contemporary India. Some of the questions guiding my current research include: in what ways has labour precarity been produced through new forms of privatisation? How has civil society been reconfigured under the contemporary Indian state? And what does the shift from <em>entitlements</em> to <em>empowerment</em> in welfare delivery, alongside the growing digitalisation of welfare schemes, tell us about the contemporary welfare regime?</p>
+        <p style="color:var(--ink-soft); margin:0 0 16px;">In addressing these questions, I ground my analysis in empirical evidence while situating it within a theoretical framework drawing on political anthropology, political science, development studies, and urban studies. Broadly, my research interest is to understand the role of state institutions in a democracy — what roles and interests of state and non-state actors are at play, and in what ways such institutions may lead to democratic backsliding. I'm interested in examining the intersection of neoliberalism and authoritarianism, focusing on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
+        <p style="color:var(--ink-soft); margin:0;">Beyond my academic work, I've also been slowly drawn to multimedia projects, and I'm keen to explore this further as a way of disseminating my research to a wider audience — through documentary filmmaking, and visual storytelling through photography and sound.</p>
       </div>
     </div>
   </section>
@@ -486,6 +466,27 @@
       <p class="subhead">Visiting Affiliations</p>
       <div class="cv-list">
         <p class="cv-entry"><span class="cv-year">2026</span><span class="cv-desc">PhD Visiting Researcher, Department of Anthropology, University College London <span class="cv-date">(Jan–Jun)</span></span></p>
+      </div>
+    </div>
+    <div class="subblock">
+      <div class="lang-tools-compact">
+        <div>
+          <p class="subhead">Languages</p>
+          <div class="tags">
+            <span class="tag">English</span>
+            <span class="tag">Hindi</span>
+            <span class="tag">Bengali</span>
+            <span class="tag">German (A1)</span>
+          </div>
+        </div>
+        <div>
+          <p class="subhead">Tools</p>
+          <div class="tags">
+            <span class="tag">ATLAS.ti</span>
+            <span class="tag">MAXQDA</span>
+            <span class="tag">STATA</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -513,48 +514,45 @@
     <div class="section-head">
       <h2>Fieldwork</h2>
       <p style="font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.03em; color:var(--ink-soft); margin-top:14px;">Uttar Pradesh, 2023 – ongoing · 13 months</p>
+      <p class="fieldwork-intro">Alongside the written research, photography has become part of how I document and think through fieldwork — a selection of images from the field below.</p>
     </div>
-    <div class="photo-collage">
-      <div class="photo-main-col">
-        <figure class="photo-main">
-          <img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh">
-          <figcaption>Woman and her kutcha house in an informal settlement, Lucknow</figcaption>
-        </figure>
-        <figure class="photo-main">
-          <img src="photos/photo12.jpg" alt="Beneficiary standing in front of her PMAY house, face blurred for privacy">
-          <figcaption>Labharthi (beneficiary) in front of her PMAY house</figcaption>
-        </figure>
-      </div>
-      <div class="photo-side">
-        <figure class="photo-cell">
-          <img src="photos/photo2.jpg" alt="Two goats resting against a brick wall">
-          <figcaption>Animals reared for livestock</figcaption>
-        </figure>
-        <figure class="photo-cell">
-          <img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry">
-          <figcaption>A cow beneath a clothesline</figcaption>
-        </figure>
-        <figure class="photo-cell">
-          <img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling">
-          <figcaption>A woman entering her brick makeshift home after her pucca house was demolished, in Hardoi</figcaption>
-        </figure>
-        <figure class="photo-cell">
-          <img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair">
-          <figcaption>Mazdoor ke haath (hands of a labourer)</figcaption>
-        </figure>
-        <figure class="photo-cell">
-          <img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh">
-          <figcaption>Charpai</figcaption>
-        </figure>
-        <figure class="photo-cell">
-          <img src="photos/photo11.jpg" alt="PMAY resettlement colony housing blocks">
-          <figcaption>PMAY Resettlement Colony</figcaption>
-        </figure>
-        <figure class="photo-cell wide">
-          <img src="photos/photo13.jpg" alt="Billboard advertising the state's free ration scheme, featuring the Uttar Pradesh Chief Minister and Prime Minister">
-          <figcaption>State welfare billboard, free ration scheme</figcaption>
-        </figure>
-      </div>
+    <div class="photo-portfolio">
+      <figure>
+        <img src="photos/photo1.jpg" alt="Woman plastering the wall of a mud home, village Uttar Pradesh">
+        <figcaption>Woman and her kutcha house in an informal settlement, Lucknow</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo12.jpg" alt="Beneficiary standing in front of her PMAY house, face blurred for privacy">
+        <figcaption>Labharthi (beneficiary) in front of her PMAY house</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo2.jpg" alt="Two goats resting against a brick wall">
+        <figcaption>Animals reared for livestock</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo3.jpg" alt="A cow standing beneath a clothesline of drying laundry">
+        <figcaption>A cow beneath a clothesline</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo5.jpg" alt="Woman entering a brick and tarp dwelling">
+        <figcaption>A woman entering her brick makeshift home, in Hardoi</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo8.jpg" alt="Close-up of hands doing informal metalwork and repair">
+        <figcaption>Mazdoor ke haath (hands of a labourer)</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo10.jpg" alt="Fieldwork photograph, Uttar Pradesh">
+        <figcaption>Charpai</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo11.jpg" alt="PMAY resettlement colony housing blocks">
+        <figcaption>PMAY Resettlement Colony</figcaption>
+      </figure>
+      <figure>
+        <img src="photos/photo13.jpg" alt="Billboard advertising the state's free ration scheme, featuring the Uttar Pradesh Chief Minister and Prime Minister">
+        <figcaption>State welfare billboard about the free ration scheme</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -579,7 +577,7 @@
               </span>
             </summary>
             <p class="pub-desc">Digital technologies have increasingly been incorporated into social policy to improve welfare delivery, underpinning a neoliberal welfare regime. In India, Aadhaar-enabled systems and Direct Benefit Transfers (DBTs) have become central to what scholars term the BJP government's "new welfarism," which reconfigures welfare around two features: first, provisioning goods such as housing, toilets, and gas connections through centrally sponsored schemes; and second, an explicit reliance on digital technologies to deliver benefits directly into beneficiaries' bank accounts. The figure of the labharthi (beneficiary) has become closely associated with DBT-based welfare and with political narratives that centralize credit to Prime Minister Narendra Modi. Uttar Pradesh, for instance, has claimed some of the highest numbers of beneficiaries nationwide, including over 130 million beneficiaries across six major DBT schemes, and the highest number of completed urban houses under the Pradhan Mantri Awas Yojana (Urban) [PMAY(U)].</p>
-            <p class="pub-desc">This paper investigates PMAY(U), a flagship housing programme that employs geo-tagging applications to deliver cash transfers, in order to understand how individuals access the scheme and become beneficiaries through their interactions with state and non-state actors. The findings show that despite DBTs and digitalization, brokerage continues to shape access, especially for landless applicants, with local brokers and elected representatives often mediating early approval stages. Simultaneously, DBTs have generated what I call a new layer of intermediaries, particularly private consultants, who extract rents at different stages, undermining claims of eliminating middlemen. Amid rapid urbanization and limited state capacity, the paper argues that digitalized welfare can deepen citizens' dependence on intermediaries, diffusing accountability and creating new avenues for rent-seeking.</p>
+            <p class="pub-desc">This paper investigates PMAY(U), a flagship housing programme that employs geo-tagging applications to deliver cash transfers, in order to understand how individuals access the scheme and become beneficiaries through their interactions with state and non-state actors. The findings show that despite DBTs and digitalisation, brokerage continues to shape access, especially for landless applicants, with local brokers and elected representatives often mediating early approval stages. Simultaneously, DBTs have generated a new layer of intermediaries, who extract rents at different stages, undermining claims of eliminating middlemen. Amid rapid urbanization and limited state capacity, the paper argues that digitalized welfare can deepen citizens' dependence on intermediaries, diffusing accountability and creating new avenues for rent-seeking.</p>
           </details>
         </span>
         <span class="stamp-badge">Draft</span>
@@ -680,35 +678,24 @@
     </div>
   </section>
 
-  <!-- SCHOLARSHIPS -->
-  <section id="scholarships" class="reveal">
-    <div class="section-head">
-      <h2>Scholarships</h2>
-    </div>
-    <div class="cv-list">
-      <p class="cv-entry"><span class="cv-year">2026</span><span class="cv-desc">FREETORINO Scholarship, University of Turin, Department of Cultures, Politics and Society, Italy</span></p>
-      <p class="cv-entry"><span class="cv-year">2020</span><span class="cv-desc">ISS Scholarship Fund for Excellent Students, International Institute of Social Studies, The Hague, Netherlands</span></p>
-    </div>
-  </section>
-
   <!-- CV -->
-  <section id="cv" class="section-alt reveal">
+  <section id="cv" class="reveal">
     <div class="section-head">
       <h2>Curriculum Vitae</h2>
     </div>
     <div class="cv-box">
       <div>
-        <h3 style="font-size:1.1rem;">Complete academic record</h3>
-        <p>Education, publications, presentations, grants, and teaching experience in full — updated [Month Year].</p>
+        <h3 style="font-size:1.1rem;">Academic Record</h3>
       </div>
       <a class="btn btn-primary" href="#" download>Download CV (PDF)</a>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="reveal">
+  <section id="contact" class="section-alt reveal">
     <div class="section-head">
       <h2>Contact</h2>
+      <p style="color:var(--ink-soft); margin:14px auto 0; max-width:56ch;">Feel free to get in touch for consultancy work, academic collaborations, or simply to talk through ideas over coffee.</p>
     </div>
     <div class="contact-block">
       <div>NAME&nbsp;&nbsp;&nbsp;&nbsp;Moubani Maitra</div>
