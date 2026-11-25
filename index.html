@@ -207,14 +207,18 @@
 
   /* ---------- FIELDWORK — PHOTOGRAPHY PORTFOLIO ---------- */
   .photo-portfolio{
-    max-width:900px;
+    max-width:1000px;
     margin:0 auto;
-    display:flex;
-    flex-direction:column;
-    gap:56px;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:40px 28px;
+    align-items:start;
   }
   .photo-portfolio figure{
     margin:0;
+  }
+  .photo-portfolio figure:last-child{
+    grid-column:1 / -1;
   }
   .photo-portfolio img{
     display:block;
@@ -390,7 +394,7 @@
     .about-photo-grid{ grid-template-columns:1fr; }
     .lang-tools-compact{ grid-template-columns:1fr; gap:16px; }
     .about-photo{ max-width:220px; }
-    .photo-portfolio{ gap:36px; }
+    .photo-portfolio{ gap:28px 18px; }
     .tabs{ display:none; }
     .nav-toggle{ display:inline-flex; }
     .tabs.open{
@@ -399,6 +403,10 @@
       padding:6px; max-height:80vh; overflow-y:auto;
     }
     .pub{ grid-template-columns:32px 1fr; }
+  }
+
+  @media (max-width: 520px){
+    .photo-portfolio{ grid-template-columns:1fr; }
   }
 
   @media (prefers-reduced-motion: reduce){
