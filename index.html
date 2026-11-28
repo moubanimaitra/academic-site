@@ -184,17 +184,6 @@
   }
 
   /* ---------- PHD PROJECT ---------- */
-  .phd-project{
-    background:var(--paper);
-    border:1px solid var(--paper-line);
-    border-radius:var(--radius);
-    padding:40px;
-    max-width:640px;
-    margin:0 auto;
-  }
-  .phd-project h3{ font-size:1.6rem; line-height:1.32; margin:12px 0 20px; font-style:italic; font-weight:500; text-align:center; }
-  .phd-project p{ color:var(--ink-soft); margin:0 0 18px; }
-  .phd-project .tags{ margin-top:6px; justify-content:center; }
 
   /* ---------- FIELDWORK ---------- */
   .fieldwork{ background:var(--paper); color:var(--ink); }
@@ -285,6 +274,8 @@
     line-height:1.6;
     color:var(--ink-soft);
     max-width:66ch;
+    text-align:justify;
+    hyphens:auto;
   }
 
   /* ---------- TEACHING ---------- */
@@ -307,14 +298,6 @@
 
   /* ---------- SUB-BLOCKS (Activities, Coordination) ---------- */
   .subblock{ margin-bottom:16px; }
-  .lang-tools-compact{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
-  }
-  .lang-tools-compact .subhead{ margin-bottom:8px; }
-  .lang-tools-compact .tags{ gap:5px; justify-content:center; }
-  .lang-tools-compact .tag{ font-size:0.62rem; padding:3px 7px; }
   .subblock:last-child{ margin-bottom:0; }
   .subhead{
     font-family:'IBM Plex Mono', monospace;
@@ -392,7 +375,6 @@
     .about-section{ padding-top:120px; }
     .about-grid{ grid-template-columns:1fr; }
     .about-photo-grid{ grid-template-columns:1fr; }
-    .lang-tools-compact{ grid-template-columns:1fr; gap:16px; }
     .about-photo{ max-width:220px; }
     .photo-portfolio{ gap:28px 18px; }
     .tabs{ display:none; }
@@ -422,13 +404,10 @@
     <nav>
       <ul class="tabs" id="tabs">
         <li><a href="#about">About</a></li>
-        <li><a href="#affiliations">Affiliations</a></li>
-        <li><a href="#research">PhD Project</a></li>
         <li><a href="#fieldwork">Fieldwork</a></li>
-        <li><a href="#publications">Work in Progress</a></li>
+        <li><a href="#research">Research</a></li>
         <li><a href="#activities">Activities</a></li>
         <li><a href="#teaching">Teaching</a></li>
-        <li><a href="#grants">Grants</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -449,72 +428,12 @@
         <img src="photos/profile.jpg" alt="Moubani Maitra" class="about-photo">
       </div>
       <div style="max-width:60ch;">
-        <p style="color:var(--ink-soft); margin:0 0 16px;">I'm a writer and social science researcher currently based in Zürich, Switzerland. My research sits at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. I draw on long-term ethnographic fieldwork carried out over several years to understand how citizenship and democracy have evolved in contemporary India. Some of the questions guiding my current research include: in what ways has labour precarity been produced through new forms of privatisation? How has civil society been reconfigured under the contemporary Indian state? And what does the shift from <em>entitlements</em> to <em>empowerment</em> in welfare delivery, alongside the growing digitalisation of welfare schemes, tell us about the contemporary welfare regime?</p>
-        <p style="color:var(--ink-soft); margin:0 0 16px;">In addressing these questions, I ground my analysis in empirical evidence while situating it within a theoretical framework drawing on political anthropology, political science, development studies, and urban studies. Broadly, my research interest is to understand the role of state institutions in a democracy — what roles and interests of state and non-state actors are at play, and in what ways such institutions may lead to democratic backsliding. I'm interested in examining the intersection of neoliberalism and authoritarianism, focusing on the structural and institutional conditions that allow such authoritarianism not only to emerge and operate, but also to sustain itself over time.</p>
-        <p style="color:var(--ink-soft); margin:0;">Beyond my academic work, I've also been slowly drawn to multimedia projects, and I'm keen to explore this further as a way of disseminating my research to a wider audience — through documentary filmmaking, and visual storytelling through photography and sound.</p>
+        <p style="color:var(--ink-soft); margin:0 0 16px;">I am a writer and social science researcher currently based in Zürich, Switzerland. My research lies at the intersection of critical political economy, the anthropology of the state, and citizen-state relations in South Asia. Drawing on several years of long-term ethnographic fieldwork, I examine how citizenship and democracy have evolved in contemporary India.</p>
+        <p style="color:var(--ink-soft); margin:0 0 16px;">My PhD dissertation explores transformations in the Indian political economy since 2014, when the Bharatiya Janata Party (BJP) came to power. In particular, I focus on urban governance, land dispossession, civil society, public service delivery, and welfare policies.</p>
+        <p style="color:var(--ink-soft); margin:0 0 16px;">I ground my analysis in empirical research while situating it within broader theoretical debates in political anthropology, political science, development studies, and urban studies. More broadly, I am interested in understanding the role of state institutions in a democracy: the interests and roles of state and non-state actors, the relationships between them, and the ways in which their interactions and institutional practices may contribute to democratic backsliding.</p>
+        <p style="color:var(--ink-soft); margin:0;">Beyond my academic work, I have increasingly found myself drawn to multimedia projects and alternative forms of storytelling. I am keen to explore these further as ways of making my research accessible to wider audiences, particularly through documentary filmmaking and visual storytelling using photography and sound.</p>
       </div>
     </div>
-  </section>
-
-  <!-- ACADEMIC AFFILIATIONS -->
-  <section id="affiliations" class="reveal">
-    <div class="section-head">
-      <h2>Academic Affiliations</h2>
-    </div>
-    <div class="subblock">
-      <p class="subhead">Education</p>
-      <div class="cv-list">
-        <p class="cv-entry"><span class="cv-year">2022</span><span class="cv-desc">PhD Researcher, Institute of Asian and Oriental Studies, University of Zurich <span class="cv-date">(ongoing)</span></span></p>
-        <p class="cv-entry"><span class="cv-year">2021</span><span class="cv-desc">MA Development Studies, International Institute of Social Studies, The Hague, Netherlands</span></p>
-        <p class="cv-entry"><span class="cv-year">2019</span><span class="cv-desc">MSc Economics, University of Calcutta</span></p>
-        <p class="cv-entry"><span class="cv-year">2017</span><span class="cv-desc">BSc Economics, University of Calcutta</span></p>
-      </div>
-    </div>
-    <div class="subblock">
-      <p class="subhead">Visiting Affiliations</p>
-      <div class="cv-list">
-        <p class="cv-entry"><span class="cv-year">2026</span><span class="cv-desc">PhD Visiting Researcher, Department of Anthropology, University College London <span class="cv-date">(Jan–Jun)</span></span></p>
-      </div>
-    </div>
-    <div class="subblock">
-      <div class="lang-tools-compact">
-        <div>
-          <p class="subhead">Languages</p>
-          <div class="tags">
-            <span class="tag">English</span>
-            <span class="tag">Hindi</span>
-            <span class="tag">Bengali</span>
-            <span class="tag">German (A1)</span>
-          </div>
-        </div>
-        <div>
-          <p class="subhead">Tools</p>
-          <div class="tags">
-            <span class="tag">ATLAS.ti</span>
-            <span class="tag">MAXQDA</span>
-            <span class="tag">STATA</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PHD PROJECT -->
-  <section id="research" class="section-alt reveal">
-    <div class="section-head">
-      <h2>PhD Project</h2>
-    </div>
-    <article class="phd-project">
-      <h3>Contesting Democracy: Liberalisation, Institutions, and the State in Uttar Pradesh</h3>
-      <p>This dissertation examines shifts in India's political economy following the Bharatiya Janata Party's 2014 election victory, tracing this transformation through four major themes: the shrinking of the public sector through new forms of privatisation and state-business nexus, the reconfiguration of civil society, evictions and land dispossession, and the neoliberal welfare regime.</p>
-      <p>Taken together, these four themes demonstrate how the gap between formal and substantive democracy widens as contemporary manifestations of neoliberalism — through outsourcing and privatisation, the expansion of private capital, the erosion of labour rights, and the digitalisation of welfare schemes — intersect with authoritarian tendencies such as the centralisation of power, the weakening of due process, repression of civil society, and the erosion of accountability mechanisms. Collectively, these developments characterise a democratic decline under the BJP in India. I argue that democratic backsliding is often accomplished through seemingly ordinary legal operations of institutional power, rather than just institutional co-optation or overt rule-breaking, as has been pointed out earlier by researchers. However, this requires alignment across multiple state actors and institutions, whose combined action creates conditions where erosion proceeds with minimal accountability.</p>
-      <div class="tags">
-        <span class="tag">neoliberalism</span>
-        <span class="tag">authoritarianism</span>
-        <span class="tag">political economy</span>
-        <span class="tag">Uttar Pradesh</span>
-      </div>
-    </article>
   </section>
 
   <!-- FIELDWORK -->
@@ -565,9 +484,9 @@
   </section>
 
   <!-- WORK IN PROGRESS -->
-  <section id="publications" class="reveal">
+  <section id="research" class="section-alt reveal">
     <div class="section-head">
-      <h2>Work in Progress</h2>
+      <h2>Research</h2>
     </div>
     <ul class="ledger">
       <li class="pub">
@@ -577,7 +496,7 @@
             <summary>
               <span>
                 <span class="pub-title">The Paradox of Direct Benefit Transfers: Rent-Seeking, Brokerage, and the New Middlemen in India’s Urban Housing Scheme</span>
-                <span class="pub-meta">Dissertation chapter draft &amp; working paper</span>
+                <span class="pub-meta">Working paper</span>
               </span>
               <span class="pub-hint">
                 <span class="pub-hint-closed">Read abstract</span>
@@ -597,7 +516,7 @@
             <summary>
               <span>
                 <span class="pub-title">Reconfiguring Civil Society: Institutional Constraints and Democratic Backsliding in Contemporary India</span>
-                <span class="pub-meta">Dissertation chapter draft</span>
+                <span class="pub-meta">Working paper</span>
               </span>
               <span class="pub-hint">
                 <span class="pub-hint-closed">Read abstract</span>
@@ -610,11 +529,51 @@
         </span>
         <span class="stamp-badge">Draft</span>
       </li>
+      <li class="pub">
+        <span class="pub-num">03</span>
+        <span>
+          <details class="pub-details">
+            <summary>
+              <span>
+                <span class="pub-title">“Everything has been privatised”: Waste Management and the Politics of Public-Private Partnerships in Urban India</span>
+                <span class="pub-meta">Working paper</span>
+              </span>
+              <span class="pub-hint">
+                <span class="pub-hint-closed">Read abstract</span>
+                <span class="pub-hint-open">Hide abstract</span>
+              </span>
+            </summary>
+            <p class="pub-desc">This paper examines the political economy of public-private partnership (PPP) restructuring at the municipal level through the case of the Solid Waste Management (SWM) component of the Swachh Bharat Mission, launched by the BJP government. It explores how the increasing reliance on PPPs in public service delivery, particularly in waste management and sanitation, has reshaped capital-labour-state relations. The Swachh Bharat Mission, with its high-profile popular campaign, has further consolidated the PPP model as a dominant mode of organising public service provision. In the municipality under study, located in a tier-II city in Uttar Pradesh, the outsourcing of municipal waste management to multiple private companies through PPP arrangements has emerged as the principal mechanism for addressing the city’s waste management crisis. This model has also become the dominant mode of recruiting and employing sanitation workers (safai karamcharis), who overwhelmingly belong to marginalised caste backgrounds. Drawing on field observations, interviews, government documents, and audit reports, this paper argues that the turn towards PPPs cannot be understood simply as a consequence of inadequate state capacity. Rather, it represents a reconfiguration and relocation of state capacity towards private companies, with the state increasingly assuming the role of contract manager instead of expanding its own public-sector workforce and institutional capacity to deliver waste management services. This shift prioritises the management of relations with capital while distancing the state from its direct responsibilities towards labour. The result is a political economy in which public funds and service-delivery responsibilities are channelled through private intermediaries, while the costs of fiscal constraints and contractual failures are disproportionately borne by outsourced sanitation workers.</p>
+          </details>
+        </span>
+        <span class="stamp-badge">Draft</span>
+      </li>
+      <li class="pub">
+        <span class="pub-num">04</span>
+        <span>
+          <details class="pub-details">
+            <summary>
+              <span>
+                <span class="pub-title">Displaced from the city, Deleted from the Vote: Evictions and the Production of Electoral Exclusion in India</span>
+                <span class="pub-meta">Working paper</span>
+              </span>
+              <span class="pub-hint">
+                <span class="pub-hint-closed">Read abstract</span>
+                <span class="pub-hint-open">Hide abstract</span>
+              </span>
+            </summary>
+            <p class="pub-desc">Evictions and home demolitions have increased significantly across India in recent years. According to the Housing and Land Rights Network (HLRN, 2024), approximately 500,000 people were forcibly evicted and nearly 100,000 homes demolished in 2023, the highest annual figure since documentation began in 2016. Uttar Pradesh has witnessed a similar trend, with successive HLRN reports indicating a steady rise in demolitions since 2017. Against this backdrop, the bulldozer has emerged as a prominent political symbol in the rhetoric and election campaigns of BJP politicians, particularly in Uttar Pradesh.</p>
+            <p class="pub-desc">Drawing on the eviction of a Muslim-majority neighbourhood in Lucknow, the capital of Uttar Pradesh, this paper examines eviction across three phases: before, during, and after displacement. It argues that eviction cannot be understood merely as material and spatial displacement, or solely through the frameworks of ethno-nationalist politics and neoliberal urban restructuring. Rather, it is a broader political process involving legal legitimisation, the production of residents’ compliance, and the consolidation of new forms of exclusion. The paper examines how courts and legal institutions legitimised the eviction, how residents’ compliance was manufactured through coercion, infrastructural attrition, and intimidation, and how subsequent relocation to the urban periphery through a housing scheme produced an ostensibly welfarist outcome.</p>
+            <p class="pub-desc">The paper demonstrates that despite following formal legal procedures and providing alternative housing, the eviction resulted in the political disenfranchisement of the displaced population. Alongside their spatial relocation, residents’ names were deleted from electoral rolls during the Special Intensive Revision (SIR) exercise. The case thus reveals how legal and welfare-oriented interventions can simultaneously facilitate displacement and electoral exclusion, raising critical questions about the relationship between urban dispossession, citizenship, and democracy.</p>
+          </details>
+        </span>
+        <span class="stamp-badge">Draft</span>
+      </li>
     </ul>
   </section>
 
   <!-- ACTIVITIES -->
-  <section id="activities" class="section-alt reveal">
+  <section id="activities" class="reveal">
     <div class="section-head">
       <h2>Activities</h2>
     </div>
@@ -642,7 +601,7 @@
   </section>
 
   <!-- TEACHING -->
-  <section id="teaching" class="reveal">
+  <section id="teaching" class="section-alt reveal">
     <div class="section-head">
       <h2>Teaching &amp; Programme Coordination</h2>
     </div>
@@ -670,20 +629,6 @@
           <span class="tag">urban citizenship</span>
         </div>
       </article>
-    </div>
-  </section>
-
-  <!-- GRANTS -->
-  <section id="grants" class="section-alt reveal">
-    <div class="section-head">
-      <h2>Grants</h2>
-    </div>
-    <div class="cv-list">
-      <p class="cv-entry"><span class="cv-year">2026</span><span class="cv-desc">Research Travel Grant, Faculty of Arts and Social Sciences, University of Zurich <span class="cv-date">CHF 1,500</span></span></p>
-      <p class="cv-entry"><span class="cv-year">2025</span><span class="cv-desc">Doc.Mobility Fellowship, University of Zurich <span class="cv-date">CHF 28,200</span></span></p>
-      <p class="cv-entry"><span class="cv-year">2024</span><span class="cv-desc">Long Trip Grant, Faculty of Arts and Social Sciences, University of Zurich <span class="cv-date">CHF 1,000</span></span></p>
-      <p class="cv-entry"><span class="cv-year">2023</span><span class="cv-desc">Long Trip Grant, Faculty of Arts and Social Sciences, University of Zurich <span class="cv-date">CHF 1,000</span></span></p>
-      <p class="cv-entry"><span class="cv-year">2023</span><span class="cv-desc">GRC Travel Grant, Graduate School, University of Zurich <span class="cv-date">CHF 4,900</span></span></p>
     </div>
   </section>
 
